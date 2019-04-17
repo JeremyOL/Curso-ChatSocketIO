@@ -1,0 +1,19 @@
+{
+  "name": "socketio-chat",
+  "version": "1.0.0",
+  "description": "Aplicacion de chat con socket.io",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Yo Merales",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
+  }
+}
