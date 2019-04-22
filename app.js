@@ -14,20 +14,20 @@ app.use(express.static(STATIC_FILES));
 
 const server = app.listen(SRV_PORT, () => {
     console.log(`Inicializando servidor...`);
-});
-// .on('listening', () => {
-//     console.log(`Servidor escuchando en el puerto ${SRV_PORT}`);
-// }).on('error', (err) => {
-//     console.error(`Ha ocurrido un error: ${err}`);
-// }).on('connection', (socket) => {
-//     console.log(`Cliente conectado. ${socket.localAddress}`);
-// });
+})
+    .on('listening', () => {
+        console.log(`Servidor escuchando en el puerto ${SRV_PORT}`);
+    }).on('error', (err) => {
+        console.error(`Ha ocurrido un error: ${err.message}`);
+    }).on('connection', (socket) => {
+        console.log(`CLIENT ADDRESS: ${socket.remoteAddress}`);
+    });
 
 //WEB SOCKETS
 const io = SocketIO(server);
 
 io.on('connection', (socket) => {
-    console.log(`Cliente conectado. ${socket.id}`);
+    console.log(`CLIENT ID: ${socket.id}`);
 });
 io.on('connect', () => {
     console.log('Connect');
