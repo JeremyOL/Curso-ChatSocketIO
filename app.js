@@ -28,6 +28,27 @@ const io = SocketIO(server);
 
 io.on('connection', (socket) => {
     console.log(`CLIENT ID: ${socket.id}`);
+
+    socket.on('chat:message', (data) => {
+        console.log({
+            username: data['username'],
+            message: data['message']
+        });
+        io.sockets.emit('chat:message', {
+            username: data['username'],
+            message: data['message']
+        });
+    });
+
+    socket.on('chat:typing', (data) => {
+        console.log({
+            username: data['username']
+        });
+        socket.broadcast.emit('chat:typing', {
+            username: data['username']
+        })
+    });
+
 });
 io.on('connect', () => {
     console.log('Connect');
